@@ -1,11 +1,11 @@
-# Day Planner
+# Mez Planner
 
 ![image](https://github.com/user-attachments/assets/4519c47c-4e70-4eda-9176-b9bc55f5e141)
 
 
 ## Project Description
 
-**Day Planner** is a web application under development aimed at helping users plan and visualize their daily tasks. The application will feature a customizable time ruler where users can add tasks, and these tasks will be reflected both on the time ruler and on a pie chart that displays time distribution.
+**Mez Planner** is a web application under development aimed at helping users plan and visualize their daily tasks. The application will feature a customizable time ruler where users can add tasks, and these tasks will be reflected both on the time ruler and on a pie chart that displays time distribution.
 
 This project is designed to showcase skills in Python, SQL, and Data Science, using technologies such as React for the frontend and Flask for the backend.
 
@@ -42,8 +42,8 @@ This project uses Nix to configure the development environment. You can set up t
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/YourUsername/DayPlanner.git
-    cd DayPlanner
+    git clone https://github.com/Menezess42/MezPlanner.git
+    cd MezPlanner
     ```
 
 2. Set up the environment using Nix:
