@@ -14,7 +14,8 @@
 				devShell = pkgs.mkShell {                                                                  
 				name = "day-planner-env";
 				buildInputs = with pkgs; [
-				python311
+          curl
+				  python311
 # Project Lib
 				python311Packages.pip
 				python311Packages.pandas
