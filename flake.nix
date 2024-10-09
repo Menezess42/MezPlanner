@@ -14,11 +14,13 @@
 				devShell = pkgs.mkShell {                                                                  
 				name = "day-planner-env";
 				buildInputs = with pkgs; [
-          curl
-				  python311
+				curl
+				direnv
+				python311
 # Project Lib
 				python311Packages.pip
 				python311Packages.pandas
+				python311Packages.openpyxl
 				python311Packages.matplotlib
 				python311Packages.flask
 # Emacs pyIDE libs
@@ -29,7 +31,12 @@
 				python311Packages.python-lsp-server
 				python311Packages.virtualenv
 				python311Packages.pyflakes  # Linter Pyflakes
-				direnv
+# Extra Emacs Packages
+				emacsPackages.web-mode
+				emacsPackages.lsp-mode
+				emacsPackages.emmet-mode
+				emacsPackages.flycheck
+				emacsPackages.lsp-ui
 				];                
 				shellHook = ''                                                                           
 					echo "Welcome to the Day Planner and Investment Tracker environment!"                    
