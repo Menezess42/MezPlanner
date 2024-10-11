@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}(:DayPlanner:){% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="{{ url_for('todos.static', filename='css/style.css') }}">
+{% endblock %}
+{% block content %}
+		<h1>DayPlanner</h1>
+{% endblock %}

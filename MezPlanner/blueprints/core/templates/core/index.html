@@ -4,12 +4,18 @@
     <link rel="stylesheet" href="{{ url_for('core.static', filename='css/style.css') }}">
 {% endblock %}
 {% block content %}
+    <!-- <div class="EncpsOpts"> -->
     <div class="Opts">
 	<div class="DayPlanner">
-	    <h1>DayPlanner</h1>
+	    <a href="{{ url_for('dayplanner.index') }}" class="DayPlanner">
+		<h1>DayPlanner</h1>
+	    </a>
 	</div>
 	<div class="StockPlanner">
-	    <h1>StockPlanner</h1>
+	    <a href="{{ url_for('core.index') }}" class="StockPlanner">
+		<h1>StockPlanner</h1>
+	    </a>
 	</div>
     </div>
+    <!-- </div> -->
 {% endblock %}
