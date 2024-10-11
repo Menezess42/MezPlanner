@@ -2,7 +2,8 @@ from flask import render_template, Blueprint
 
 core = Blueprint("core", __name__,
                  template_folder="templates",
-                 static_folder="static")
+                 static_folder="static",
+                 static_url_path="/core_static")
 
 
 @core.route("/")

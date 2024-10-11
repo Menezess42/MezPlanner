@@ -1,7 +1,9 @@
-body{
-  background-color: rgb(255,0,0);
-}
-
+/* body{ */
+/*   display: grid; */
+/*   place-items: center; */
+/*   height: 100vh; */
+/*   margin: 0; */
+/* } */
 .Opts{
   display: grid;
   grid-template-columns: 1fr 1fr;

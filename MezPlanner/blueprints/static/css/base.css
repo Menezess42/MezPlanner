@@ -4,7 +4,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 /* Background global */
 body {
   background-color: #393939;
@@ -12,30 +11,48 @@ body {
   font-family: 'Fira Sans';
 }
 
+/* Definindo a estrutura principal usando Grid */
+.Global {
+  display: grid;
+  grid-template-rows: auto 1fr; /* Cabeçalho seguido pelo conteúdo */
+  min-height: 100vh; /* Garante que o layout ocupe toda a altura da tela */
+}
+
 /* Estilos para a div TopHead */
 .TopHead {
-  border-radius: 0px 0px 15px 15px; /* TopLeft TopRight Botton*/
+  border-radius: 0px 0px 15px 15px; /* Canto arredondado na parte inferior */
   display: grid;
   grid-template-columns: 1fr 500px 1fr;
   place-items: center;
   background-color: rgba(191, 191, 191, 0.1); /* Fundo translúcido */
-  padding: 10px; /* Para dar um espaçamento dentro da TopHead */
+  padding: 10px; /* Para espaçamento interno */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000; /* Garante que fique sempre acima do conteúdo */
 }
 
-/* Alinhamento à esquerda para o FutureSandwish */
+/* Alinhamento para elementos dentro do TopHead */
 .TopHead .Sandwish {
   justify-self: start;
-  margin-left: 10px; /* Para garantir um pouco de espaço da borda */
+  margin-left: 10px;
 }
 
-/* Alinhamento central para o MezPlanner */
 .TopHead .Name {
   justify-self: center;
-  margin: 0; /* Remover margens que podem interferir no alinhamento */
+  margin: 0;
 }
 
-/* Alinhamento à direita para o User */
 .TopHead .User {
   justify-self: end;
-  margin-right: 10px; /* Para garantir um pouco de espaço da borda */
+  margin-right: 10px;
 }
+
+/* Conteúdo centralizado abaixo do TopHead */
+.ContentWrapper {
+  margin-top: 60px; /* Espaço para o TopHead fixo */
+  display: grid;
+  place-items: center; /* Centraliza o conteúdo */
+  padding: 20px;
+}
+
