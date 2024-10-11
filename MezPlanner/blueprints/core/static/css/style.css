@@ -1,0 +1,10 @@
+body{
+  background-color: rgb(255,0,0);
+}
+
+.Opts{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  background-color: rgba(191, 191, 191, 0.1); /* Fundo translúcido */
+}

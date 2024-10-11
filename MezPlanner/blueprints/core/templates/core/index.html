@@ -1,7 +1,15 @@
 {% extends "base.html" %}
 {% block title %}(:MezPlanner:){% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="{{ url_for('core.static', filename='css/style.css') }}">
+{% endblock %}
 {% block content %}
-    <h1>MezPlanner</h1>
-    <a >Stocks</a>
-    <a >Todos</a>
+    <div class="Opts">
+	<div class="DayPlanner">
+	    <h1>DayPlanner</h1>
+	</div>
+	<div class="StockPlanner">
+	    <h1>StockPlanner</h1>
+	</div>
+    </div>
 {% endblock %}

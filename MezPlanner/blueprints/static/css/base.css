@@ -1,6 +1,41 @@
+/* Reset básico */
 * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Background global */
+body {
   background-color: #393939;
   color: #A0A0A0;
   font-family: 'Fira Sans';
-  font-size: 22px;
+}
+
+/* Estilos para a div TopHead */
+.TopHead {
+  border-radius: 0px 0px 15px 15px; /* TopLeft TopRight Botton*/
+  display: grid;
+  grid-template-columns: 1fr 500px 1fr;
+  place-items: center;
+  background-color: rgba(191, 191, 191, 0.1); /* Fundo translúcido */
+  padding: 10px; /* Para dar um espaçamento dentro da TopHead */
+}
+
+/* Alinhamento à esquerda para o FutureSandwish */
+.TopHead .Sandwish {
+  justify-self: start;
+  margin-left: 10px; /* Para garantir um pouco de espaço da borda */
+}
+
+/* Alinhamento central para o MezPlanner */
+.TopHead .Name {
+  justify-self: center;
+  margin: 0; /* Remover margens que podem interferir no alinhamento */
+}
+
+/* Alinhamento à direita para o User */
+.TopHead .User {
+  justify-self: end;
+  margin-right: 10px; /* Para garantir um pouco de espaço da borda */
 }
