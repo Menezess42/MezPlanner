@@ -53,7 +53,7 @@ body {
 .ContentWrapper {
   margin-top: 60px; /* Espaço para o TopHead fixo */
   display: grid;
-  place-items: center; /* Centraliza o conteúdo */
+  /* place-items: center; /\* Centraliza o conteúdo *\/ */
   padding: 20px;
 }
 

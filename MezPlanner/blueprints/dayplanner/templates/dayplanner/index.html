@@ -4,5 +4,38 @@
     <link rel="stylesheet" href="{{ url_for('dayplanner.static', filename='css/style.css') }}">
 {% endblock %}
 {% block content %}
-		<h1>DayPlanner</h1>
+    <div class="layout">
+	<div class="day-planner">
+	    <div class="day-planner__action">
+		<div class="day-planner__name">
+		    <h1>DAY PLANNER</h1>
+		</div>
+		<div class="day-planner__add-button">
+		    <h1>+</h1>
+		</div>
+	    </div>
+	    <div class="day-planner__rules">
+		<div class="rule"></div>
+		<div class="numbers">
+		    <div class="number-mark">
+			<div class="mark"></div>
+			<div class="label">0</div>
+		    </div>
+		    <div class="number-mark">
+			<div class="mark"></div>
+			<div class="label">12</div>
+		    </div>
+		    <div class="number-mark">
+			<div class="mark"></div>
+			<div class="label">24</div>
+		    </div>
+		</div>
+	    </div>
+	</div>
+	<div class="task-view">
+	    <div class="task-view__list"></div>
+	    <div class="task-view__graph"></div>
+	</div>
+    </div>
 {% endblock %}
+
