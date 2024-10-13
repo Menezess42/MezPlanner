@@ -7,8 +7,8 @@
   margin-left: 5%;
   margin-right: 5%;
   height: 100%;
+  background-color: purple;
 }
-
 .day-planner__action{
   display: grid;
   grid-template-columns: auto auto;
@@ -16,11 +16,13 @@
   padding: 0px;
   justify-content: left;
   margin-bottom: 5px;
+  background-color: pink;
 }
 .day-planner__name {
   justify-self: left;
   margin-left: 10px;
   margin-right: 0px;
+  background-color: black;
 }
 .day-planner__add-button {
   justify-self: left;
@@ -49,50 +51,51 @@
   gap: 10px;
   margin-top: 0px;
   padding-top:0px;
+  background-color: brown;
 }
-
 .rule{
-  border-radius: 10px 10px 10px 10px; /* Canto arredondado na parte inferior */
+  border-radius: 10px 10px 10px 10px;
+  border-style: solid;
+  border-color: rgba(148,148,148);
+  border-width: 5px;
   place-items: center;
-  background-color: rgba(191, 191, 191); /* Fundo translúcido */
-  padding: 10px; /* Para espaçamento interno */
+  background-color: rgb(199,199,199,0.5);
+  padding: 10px; 
   top: 0;
   width: 100%;
   height: 125px;
 }
 .numbers {
-    display: grid;
-    grid-template-columns: 0px 1fr 0px; /* Colunas vazias para garantir que os ticks alinhem aos cantos */
+  background-color: white;
+    display: flex;
+    justify-content: space-between; /* Garante que os ticks fiquem no início, meio e fim */
     position: relative;
-    margin-top: -41px; /* Aproxima os ticks da régua */
     width: 100%;
+    /*margin-top: -10px; /* Aproxima os ticks da régua */
+    height:100%;
 }
-
-/* Estilos para os riscos e números */
 .number-mark {
+  background-color: magenta;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    margin-top: -30px;
 }
-
-.number-mark:first-child {
-    justify-self: start; /* Alinha o primeiro tick ao início */
+/* Ajusta os números para que "vazem" para fora dos ticks */
+.label {
+    font-size: 14px;
+    margin-top: 40px;
+    position: absolute;
+    left: 50%; /* Alinha o meio do número com o tick */
+    transform: translateX(-50%); /* Mantém o número centralizado no tick */
+    white-space: nowrap; /* Impede a quebra de linha nos números */
 }
-
-.number-mark:nth-child(2) {
-    justify-self: center; /* Alinha o tick do meio ao centro */
-}
-
-.number-mark:nth-child(3) {
-    justify-self: end; /* Alinha o último tick ao fim */
-}
-
 .mark {
+  background-color: black;
     width: 3px;
     height: 40px;
 }
-
-/* Cores para os ticks */
 .number-mark:nth-child(1) .mark {
     background-color: green;
 }
@@ -103,10 +106,4 @@
 
 .number-mark:nth-child(3) .mark {
     background-color: red;
-}
-
-.label {
-    margin-top: 2px; /* Pequeno espaço entre o risco e o número */
-    font-size: 14px;
-    font-size: 20px;
 }
