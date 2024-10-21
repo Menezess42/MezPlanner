@@ -9,23 +9,20 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_bcrypt import Bcrypt
 
 db = SQLAlchemy()
+bcrypt = Bcrypt()
 
 
 def create_app():
     # each blueprint has his template folder
     app = Flask(__name__)
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///./mezBase.db"
+    app.config["SECRET_KEY"] = "Temporary_secret_key_for_app_MezPlanner"
 
     db.init_app(app)
-
-    # import and register all blueprints
-    # from blueprints.core.routes import core
-    # from blueprints.dayplanner.routes import dayplanner
-
-    # app.register_blueprint(core, url_prefix="/")
-    # app.register_blueprint(dayplanner, url_prefix="/dayplanner")
+    bcrypt.init_app(app)
 
     migrate = Migrate(app, db)
     return app

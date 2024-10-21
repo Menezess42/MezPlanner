@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from models import User
-from blueprints.app import db
+from blueprints.app import db, bcrypt
 
 user = Blueprint("user", __name__)
 
@@ -9,12 +9,17 @@ user = Blueprint("user", __name__)
 @user.route("/userCreate", methods=["POST"])
 def create_user():
     data = request.get_json()
-    # password = bcrypt IM continuing from here, my internet drop today.
+    # Here I want tu use Bcrypt from flask
+    password = bcrypt.generate_password_hash(data.get("password")).decode('utf-8')
     new_user = User(
         username=data.get("username"),
         password=password,
+        email=data.get("email"),
+        birthday=data.get("birthday"),
     )
-
+    db.session.add(new_user)
+    db.session.commit()
+    return jsonify({"message": "User created successfully!"}), 201
 
 # Get
 
