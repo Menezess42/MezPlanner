@@ -1,16 +1,16 @@
 # SQLAlchemy converts the models class in to a DB Table
 from flask_login import UserMixin
-from app import db
+from backend.blueprints.app import db
 from datetime import datetime
 
 
-class User(db.Modles, UserMixin):
+class User(db.Model, UserMixin):
     """User model, to create the
     database table and use as an object
     """
 
     __tablename__ = "Users"
-
+    __table_args__ = {"extend_existing": True}
     uid = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, nullable=False)
     password = db.Column(db.String, nullable=False)
@@ -18,9 +18,9 @@ class User(db.Modles, UserMixin):
     birthday = db.Column(db.Date, nullable=False)
     createdat = db.Column(db.DateTime, nullable=True)
 
-    def __init__(self, username, passwd, email, birthday):
+    def __init__(self, username, password, email, birthday):
         self.username = username
-        self.password = passwd
+        self.password = password 
         self.email = email
         self.birthday = birthday
         self.createdat = datetime.utcnow()
