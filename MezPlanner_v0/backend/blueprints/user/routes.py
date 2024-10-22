@@ -10,7 +10,7 @@ user = Blueprint("user", __name__)
 def create_user():
     data = request.get_json()
     # Here I want tu use Bcrypt from flask
-    password = bcrypt.generate_password_hash(data.get("password")).decode('utf-8')
+    password = bcrypt.generate_password_hash(data.get("password")).decode("utf-8")
     new_user = User(
         username=data.get("username"),
         password=password,
@@ -21,22 +21,51 @@ def create_user():
     db.session.commit()
     return jsonify({"message": "User created successfully!"}), 201
 
+
 # Get
+@user.route("/userGet", methods=["GET"])
+def get_user():
+    data = request.get_json()
+    email = data.get("email")
+    password = data.get("password")
+    user = User.query.filter_by(email=email).first()
+
+    if user and bcrypt.check_password_hash(user.password, password):
+        user_info = {
+            "username": user.username,
+            "email": user.email,
+            "birthday": user.birthday,
+            "created_at": user.createdat
+        }
+        return jsonify(user_info), 200
+    return jsonify({"error": "Invalid email or password"}), 401
 
 # Delete
+@user.route("/userDelete/<int:user_id>", methods=["DELETE"])
+def delete_user(user_id):
+    user = User.query.get(user_id)
+    if user:
+        db.session.delete(user)
+        db.session.commit()
+        return jsonify({"message": "User deleted successfully"}),200
+    return jsonify({"error": "User not found"}), 404
 
 # Alter
+@user.route("/userUpdate/<int:user_id>", methods=["PUT"])
+def update_user(user_id):
+    data = request.get_json()
+    user = User.query.get(user_id)
 
+    if user:
+        user.username = data.get("username", user.username)
+        user.email = data.get("email", user.email)
+        user.birthday = data.get("birthday", user.birthday)
 
-# @dayplanner.route("/tasks", methods=["POST"])
-# def create_task():
-#     data = request.get_json()  # Pega os dados enviados pelo front no formato JSON
-#     new_task = Task(
-#         name=data.get("name"),
-#         description=data.get("description"),
-#         start_time=data.get("start_time"),
-#         end_time=data.get("end_time"),
-#     )
-#     db.session.add(new_task)  # Adiciona a nova task no banco
-#     db.session.commit()  # Confirma a operação no banco
-#     return jsonify({"message": "Task criada com sucesso!"}), 201
+        if "password" in data:
+            user.password = bcrypt.generate_password_hash(data["password"]).decode("utf-8")
+
+        db.session.commit()
+        return jsonify({"message": "User updated successfully"}), 200
+
+    return jsonify({"error": "User not found"}), 404
+        

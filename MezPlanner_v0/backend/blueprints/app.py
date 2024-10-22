@@ -20,9 +20,10 @@ def create_app():
     app = Flask(__name__)
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///./mezBase.db"
     app.config["SECRET_KEY"] = "Temporary_secret_key_for_app_MezPlanner"
-
     db.init_app(app)
     bcrypt.init_app(app)
+    from blueprints.user.routes import user
 
+    app.register_blueprint(user, url_prefix="/user")
     migrate = Migrate(app, db)
     return app
