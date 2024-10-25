@@ -5,13 +5,16 @@
 # Created: Tue 22-10-2024 15:10
 # Last Modified: Tue 22-10-2024 15:10
 # -----------------
+# from backend.blueprints.user.models import User
 import pytest
 from backend.blueprints.app import create_app, db
-from backend.blueprints.user.models import User
 import sys
-sys.path.append("/mnt/hdmenezess42/GitProjects/MezPlanner/MezPlanner_v0/backend")
+import os
 
-from backend.blueprints.app import create_app, db
+# Adiciona o caminho do backend ao PYTHONPATH
+sys.path.append(
+    os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "backend"))
+)
 
 
 @pytest.fixture
@@ -23,8 +26,8 @@ def app():
             "SQLALCHEMY_DATABASE_URI": "sqlite:///:memory:",
         }
     )
-
     with app.app_context():
+        # db.init_app(app)
         db.create_all()
         yield app
         db.session.remove()
@@ -84,7 +87,7 @@ def test_update_user(client):
         "/user/userUpdate/1", json={"username": "testuser", "email": "test@example.com"}
     )
     assert response.status_code == 200
-    assert response.get_json() == {"message": "user updated successfully!"}
+    assert response.get_json() == {"message": "User updated successfully"}
 
 
 def test_delete_user(client):
@@ -100,4 +103,4 @@ def test_delete_user(client):
     )
     response = client.delete("/user/userDelete/1")
     assert response.status_code == 200
-    assert response.get_json() == {"message": "User deleted successfully!"}
+    assert response.get_json() == {"message": "User deleted successfully"}
