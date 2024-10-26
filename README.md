@@ -1,4 +1,4 @@
-# Mez Planner
+# MezPlanner
 
 ![image](https://github.com/user-attachments/assets/4519c47c-4e70-4eda-9176-b9bc55f5e141)
 
