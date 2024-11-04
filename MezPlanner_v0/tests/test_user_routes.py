@@ -53,7 +53,6 @@ def test_create_user(client):
     assert response.status_code == 201
     assert response.get_json() == {"message": "User created successfully!"}
 
-
 def test_get_user(client):
     """Testa a obtenção de um usuário existente."""
     client.post(
@@ -65,8 +64,23 @@ def test_get_user(client):
             "birthday": "1990-01-01",
         },
     )
+    response = client.get("/user/userGet/1")
+    assert response.status_code == 200
+    assert "username" in response.get_json()
+
+def test_login_user(client):
+    """Testa o login de um usuário existente."""
+    client.post(
+        "/user/userCreate",
+        json={
+            "username": "testuser",
+            "password": "testpassword",
+            "email": "test@example.com",
+            "birthday": "1990-01-01",
+        },
+    )
     response = client.get(
-        "/user/userGet", json={"email": "test@example.com", "password": "testpassword"}
+        "/user/userLogin", json={"email": "test@example.com", "password": "testpassword"}
     )
     assert response.status_code == 200
     assert "username" in response.get_json()
@@ -104,3 +118,4 @@ def test_delete_user(client):
     response = client.delete("/user/userDelete/1")
     assert response.status_code == 200
     assert response.get_json() == {"message": "User deleted successfully"}
+

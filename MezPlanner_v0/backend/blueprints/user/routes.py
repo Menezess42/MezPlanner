@@ -23,9 +23,26 @@ def create_user():
     return jsonify({"message": "User created successfully!"}), 201
 
 
-# Get
-@user.route("/userGet", methods=["GET"])
-def get_user():
+# get
+@user.route("/userGet/<int:user_id>", methods=["GET"])
+def get_user(user_id):
+    user = User.query.filter_by(uid=user_id).one()
+    # user = db.session.get(User, user_id)
+    print(user.uid)
+    if user:
+        user_info = {
+            "username": user.username,
+            "email": user.email,
+            "birthday": user.birthday,
+            "created_at": user.createdat,
+        }
+        return jsonify(user_info), 200
+    return jsonify({"error": "User not found, invalid uID or no existent user"}), 401
+
+
+# login
+@user.route("/userLogin", methods=["GET"])
+def login_user():
     data = request.get_json()
     email = data.get("email")
     password = data.get("password")
