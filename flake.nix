@@ -51,7 +51,7 @@
 				prettierd
 				emacs
 				];                
-				shellHook = ''                                                                           
+				shellHook = ''                                                           
 					echo "Welcome to the Day Planner and Investment Tracker environment!"                    
 					'';                                                                                      
 				};                                                                                         
