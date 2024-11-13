@@ -10,7 +10,7 @@ class User(db.Model, UserMixin):
     """
 
     __tablename__ = "Users"
-    __table_args__ = {"extend_existing": True}
+    # __table_args__ = {"extend_existing": True}
     uid = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, nullable=False)
     password = db.Column(db.String, nullable=False)
@@ -20,7 +20,7 @@ class User(db.Model, UserMixin):
 
     def __init__(self, username, password, email, birthday):
         self.username = username
-        self.password = password 
+        self.password = password
         self.email = email
         self.birthday = birthday
         self.createdat = datetime.utcnow()

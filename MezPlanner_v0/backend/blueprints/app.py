@@ -23,7 +23,9 @@ def create_app():
     db.init_app(app)
     bcrypt.init_app(app)
     from blueprints.user.routes import user
+    from blueprints.task.routes import task
 
     app.register_blueprint(user, url_prefix="/user")
+    app.register_blueprint(task, url_prefix="/task")
     migrate = Migrate(app, db)
     return app
