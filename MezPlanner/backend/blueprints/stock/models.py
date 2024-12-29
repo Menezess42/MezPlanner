@@ -6,10 +6,14 @@ class Stock(db.Model):
 
     __tablename__ = "Stocks"
 
-    stok_id = db.Column(db.Integer, primary_key=True)
+    stock_id = db.Column(db.Integer, primary_key=True)
     symbol = db.Column(db.String, nullable=False)
     name = db.Column(db.String, nullable=False)
     current_price = db.Column(db.Float, nullable=False)
+    transactions = db.relationship("Transactions", backref="Stock")
+    # tasks = db.relationship('Task', backref='User')
+    # intervals = db.relationship('Interval', backref='User')
+    # wallets = db.relationship('Wallet', backref='User')
 
     def __init__(self, symbol: str, name: str, current_price: float):
         """constructor"""
