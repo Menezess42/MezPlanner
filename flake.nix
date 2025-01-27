@@ -21,7 +21,8 @@
 				sqlite
 				nodejs
 				python311
-# Project Lib
+                pyright
+                isort
 				python311Packages.pip
 				python311Packages.pandas
 				python311Packages.openpyxl
@@ -34,7 +35,6 @@
 				python311Packages.flask-bcrypt
 				python311Packages.pytest
 				python311Packages.pytest-flask
-# Emacs pyIDE libs
 				python311Packages.jedi
 				python311Packages.black
 				python311Packages.flake8
@@ -42,14 +42,15 @@
 				python311Packages.python-lsp-server
 				python311Packages.virtualenv
 				python311Packages.pyflakes  # Linter Pyflakes
-# Extra Emacs Packages
-				emacsPackages.web-mode
-				emacsPackages.lsp-mode
-				emacsPackages.emmet-mode
-				emacsPackages.flycheck
-				emacsPackages.lsp-ui
-				prettierd
-				emacs
+                python311Packages.isort
+# # Extra Emacs Packages
+# 				emacsPackages.web-mode
+# 				emacsPackages.lsp-mode
+# 				emacsPackages.emmet-mode
+# 				emacsPackages.flycheck
+# 				emacsPackages.lsp-ui
+# 				prettierd
+# 				emacs
 				];                
 				shellHook = ''                                                           
 					echo "Welcome to the Day Planner and Investment Tracker environment!"                    

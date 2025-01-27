@@ -5,7 +5,6 @@ from datetime import datetime
 
 user = Blueprint("user", __name__)
 
-
 # Create
 @user.route("/userCreate", methods=["POST"])
 def create_user():

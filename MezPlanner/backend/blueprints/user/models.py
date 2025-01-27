@@ -1,6 +1,6 @@
 # Sqlalchemy converts the models class in to a DB table
-from flask_login import UserMixin
 from backend.blueprints.app import db
+from flask_login import UserMixin
 
 # from datetime import datetime
 
