@@ -36,6 +36,7 @@
                 python311Packages.pytest
                 python311Packages.pytest-flask
                 python311Packages.jedi
+                python311Packages.jedi-language-server
                 python311Packages.black
                 python311Packages.flake8
                 python311Packages.sentinel
