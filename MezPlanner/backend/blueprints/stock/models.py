@@ -1,5 +1,4 @@
 from backend.blueprints.app import db
-from datetime import datetime
 
 
 class Stock(db.Model):

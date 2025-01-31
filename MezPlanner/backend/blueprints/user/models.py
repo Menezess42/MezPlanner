@@ -24,11 +24,12 @@ class User(db.Model, UserMixin):
     intervals = db.relationship("Interval", backref="User")
     wallets = db.relationship("Wallet", backref="User")
 
-    def __init__(self, name, password, email, birthday):
+    def __init__(self, name, password, email, birthday, createdat):
         self.name = name
         self.password = password
         self.email = email
         self.birthday = birthday
+        self.createdat=createdat
 
     def __repr__(self):
         return f"<User: {self.name}, Email: {self.email}, Birthday: {self.birthday}, CreatedAt: {self.createdat}>"

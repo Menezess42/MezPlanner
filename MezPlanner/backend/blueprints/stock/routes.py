@@ -1,7 +1,6 @@
 from flask import Blueprint, request, jsonify
 from blueprints.stocks.models import Stock
 from backend.blueprints.app import db
-from datetime import datetime
 
 stock = Blueprint("stock", __name__)
 

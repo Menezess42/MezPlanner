@@ -16,12 +16,11 @@ def create_user():
         email=data.get("email"),
         password=password,
         birthday=datetime.strptime(data.get("birthday"), "%Y-%m-%d").date(),
-        createdat=datetime.datetime.now(),
+        createdat=datetime.now(),
     )
     db.session.add(new_user)
     db.session.commit()
     return jsonify({"message": "User created successfully!"}), 201
-
 
 # get
 @user.route("/userGet/<int:usr_id>", methods=["GET"])
