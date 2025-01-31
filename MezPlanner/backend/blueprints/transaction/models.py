@@ -2,9 +2,9 @@ from backend.blueprints.app import db
 from datetime import datetime
 
 
-class Stock(db.Model):
+class Transaction(db.Model):
 
-    __tablename__ = "Stocks"
+    __tablename__ = "Transactions"
 
     trans_id = db.Column(db.Integer, primary_key=True)
     walet_id = db.Column(db.Integer, db.ForeignKey("wallets.walet_id"))

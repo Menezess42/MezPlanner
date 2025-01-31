@@ -14,7 +14,7 @@ def create_interval():
             intvl_type = data.get("intvl_type"),
             weekdays = int(data.get("weekdays")),
             valid_startdate = datetime.strptime(data.get("valid_startdate"), "%Y-%m-%d").date(),
-            valid_endate=datetime.strptime(data.get("valid_endate"), "%Y-%m-%d").get(),
+            valid_endate=datetime.strptime(data.get("valid_endate"), "%Y-%m-%d").date(),
             usr_id = int(data.get("usr_id"))
             )
     db.session.add(new_interval)
