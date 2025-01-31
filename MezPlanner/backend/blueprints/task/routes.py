@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from blueprints.task.models import Task
-from blueprints.app import db
+from backend.blueprints.app import db
 
 task = Blueprint("task", __name__)
 
@@ -40,7 +40,7 @@ def get_task(tsk_id):
 @task.route("/taskUpdate/<int:tsk_id>", methods=["PUT"])
 def update_task(tsk_id):
     data = request.get_json()
-    task = db.session.get(task, tsk_id)
+    task = db.session.get(Task, tsk_id)
     if task:
         task.name = data.get("name", task.name),
         task.description = data.get("description", task.description),
