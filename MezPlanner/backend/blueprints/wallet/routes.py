@@ -26,8 +26,8 @@ def create_wallet():
     return jsonify({"message": "Wallet created successfully!"}), 201
 
 # Read
-@wallet.route("/routeGet/<int:walet_id>", methods=["GET"])
-def get_wallet(walet_id):
+@wallet.route("/awalletRead/<int:walet_id>", methods=["GET"])
+def read_wallet(walet_id):
     wallet = Wallet.query.filter_by(walet_id=walet_id).one()
     print(wallet.walet_id)
     if wallet:
