@@ -42,7 +42,7 @@ def read_transaction(trans_id):
 @transaction.route("/transactionUpdate/<int:trans_id>", methods=["PUT"])
 def update_transaction(trans_id):
     data = request.get_json()
-    transaction = db.session.get(transaction, trans_id)
+    transaction = db.session.get(Transaction, trans_id)
     if transaction:
         transaction.qtde = data.get("qtde", transaction.qtde)
         transaction.price = data.get("price", transaction.price)
@@ -54,7 +54,7 @@ def update_transaction(trans_id):
 
 # Delte
 @transaction.route("/transactionDelete/<int:trans_id>", methods=["DELETE"])
-def delte_transactioN(trans_id):
+def delete_transactioN(trans_id):
     transaction = db.session.get(Transaction, trans_id)
     if not transaction:
         return jsonify({"error": "transaction not found"}), 400

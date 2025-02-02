@@ -5,7 +5,7 @@ from backend.blueprints.app import db
 task = Blueprint("task", __name__)
 
 # Create
-@ task.route("/taskRoute", methods=["POST"])
+@ task.route("/taskCreate", methods=["POST"])
 def create_task():
     data = request.get_json()
     new_task = Task(
@@ -56,7 +56,7 @@ def update_task(tsk_id):
 # Delete
 @task.route("/taskDelete/<int:tsk_id>", methods=["DELTE"])
 def delte_task(tsk_id):
-    task = db.session.get(task, tsk_id)
+    task = db.session.get(Task, tsk_id)
     if not task:
         return jsonify({"error": "task not found"}), 404
     db.session.delete(task)
