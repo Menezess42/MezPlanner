@@ -11,8 +11,8 @@ def create_task():
     new_task = Task(
             name = data.get("name"),
             description=data.get("description"),
-            color = data.get("data"),
-            template = data.get("color"),
+            color = data.get("color"),
+            template = data.get("template"),
             weekdays = int(data.get("weekdays")),
             usr_id = int(data.get("usr_id")))
     db.session.add(new_task)
@@ -54,8 +54,8 @@ def update_task(tsk_id):
 
 
 # Delete
-@task.route("/taskDelete/<int:tsk_id>", methods=["DELTE"])
-def delte_task(tsk_id):
+@task.route("/taskDelete/<int:tsk_id>", methods=["DELETE"])
+def delete_task(tsk_id):
     task = db.session.get(Task, tsk_id)
     if not task:
         return jsonify({"error": "task not found"}), 404
