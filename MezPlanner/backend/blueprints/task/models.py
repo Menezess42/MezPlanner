@@ -7,9 +7,9 @@ class Task(db.Model):
     tsk_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.String, nullable=False)
-    color = db.Column(db.String, nullabble=False)
-    template = db.Column(db.Boolean, nullabble=False)
-    weekdays = db.Column(db.Integer(7), nullable=False)
+    color = db.Column(db.String, nullable=False)
+    template = db.Column(db.Boolean, nullable=False)
+    weekdays = db.Column(db.Integer, nullable=False)
     usr_id = db.Column(db.Integer, db.ForeignKey("user.usr_id"))
 
     def __init__(
@@ -18,7 +18,7 @@ class Task(db.Model):
         description: str,
         color: str,
         template: bool,
-        weekdays: int(7),
+        weekdays: int,
         usr_id: int,
     ):
         self.name = name
