@@ -2,17 +2,20 @@ import pytest
 from flask import Flask
 from backend.blueprints.task.routes import task
 from backend.blueprints.task.models import Task
+from backend.blueprints.user.models import User  # Importamos User para criar um usuário de teste
 from backend.blueprints.app import db
 import sys
 import os
+
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../backend')))
 
-@pytest.fixture
+
+@pytest.fixture(scope="session")
 def app():
-    """Configura um app Flask de teste."""
+    """Configura um app Flask de teste com um banco de dados persistente."""
     app = Flask(__name__)
     app.config["TESTING"] = True
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///:memory:"
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///./mezBaseTest.db"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     db.init_app(app)
@@ -20,11 +23,8 @@ def app():
 
     with app.app_context():
         db.create_all()
-    
-    yield app
 
-    with app.app_context():
-        db.drop_all()
+    yield app
 
 
 @pytest.fixture
@@ -41,11 +41,11 @@ def test_create_task(client):
         "color": "azul",
         "template": "template1",
         "weekdays": 5,
-        "usr_id": 1
+        "usr_id": 1  # Referenciamos o usuário criado no setup
     })
 
     assert response.status_code == 201
-    assert b"Stock created successfully" in response.data
+    assert b"Task created successfully" in response.data
 
 
 def test_get_task(client):
@@ -56,7 +56,7 @@ def test_get_task(client):
         "color": "vermelho",
         "template": "template2",
         "weekdays": 3,
-        "usr_id": 2
+        "usr_id": 1  # O usuário já existe, então podemos usar o ID 1
     })
 
     response = client.get("/taskGet/1")
@@ -73,7 +73,7 @@ def test_update_task(client):
         "color": "verde",
         "template": "template3",
         "weekdays": 2,
-        "usr_id": 3
+        "usr_id": 1
     })
 
     response = client.put("/taskUpdate/1", json={
@@ -91,7 +91,7 @@ def test_delete_task(client):
         "color": "cinza",
         "template": "template4",
         "weekdays": 7,
-        "usr_id": 4
+        "usr_id": 1
     })
 
     response = client.delete("/taskDelete/1")

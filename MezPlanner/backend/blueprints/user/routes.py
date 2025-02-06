@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from blueprints.user.models import User
+from backend.blueprints.user.models import User
 from backend.blueprints.app import db, bcrypt
 from datetime import datetime
 

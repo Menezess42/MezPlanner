@@ -13,11 +13,11 @@ class User(db.Model, UserMixin):
 
     __tablename__ = "Users"
     usr_id = db.Column(db.Integer, pirmary_key=True)
-    name = db.Column(db.String, nullabble=False)
-    email = db.Column(db.String, nullabble=False)
-    password = db.Column(db.String, nullabble=False)
+    name = db.Column(db.String, nullable=False)
+    email = db.Column(db.String, nullable=False)
+    password = db.Column(db.String, nullable=False)
     birthday = db.Column(db.Date, nullable=False)
-    createdat = db.Column(db.DateTime, nullabble=False)
+    createdat = db.Column(db.DateTime, nullable=False)
 
     # Relationships => class where user is a foreign key
     tasks = db.relationship("Task", backref="User")
