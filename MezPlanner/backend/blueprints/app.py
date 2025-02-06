@@ -16,7 +16,7 @@ bcrypt = Bcrypt()
 def create_app():
     # each blueprint has his template folder
     app = Flask(__name__)
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///./mezBase.db"
+    app.config["SQLALCHEMY_DATABASE_URL"] = "sqlite:///./mezBaseTest.db"
     app.config["SECRET_KEY"] = "Temporary_secret_key_for_app_MezPlanner"
     db.init_app(app)
     bcrypt.init_app(app)

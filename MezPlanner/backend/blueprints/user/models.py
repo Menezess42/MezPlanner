@@ -1,7 +1,9 @@
 # Sqlalchemy converts the models class in to a DB table
 from backend.blueprints.app import db
+from backend.blueprints.task.models import Task
+from backend.blueprints.interval.models import Interval
+from backend.blueprints.wallet.models import Wallet
 from flask_login import UserMixin
-
 # from datetime import datetime
 
 
@@ -11,13 +13,13 @@ class User(db.Model, UserMixin):
     use as an object
     """
 
-    __tablename__ = "Users"
-    usr_id = db.Column(db.Integer, pirmary_key=True)
-    name = db.Column(db.String, nullabble=False)
-    email = db.Column(db.String, nullabble=False)
-    password = db.Column(db.String, nullabble=False)
+    __tablename__ = "users"
+    usr_id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
+    email = db.Column(db.String, nullable=False)
+    password = db.Column(db.String, nullable=False)
     birthday = db.Column(db.Date, nullable=False)
-    createdat = db.Column(db.DateTime, nullabble=False)
+    createdat = db.Column(db.DateTime, nullable=False)
 
     # Relationships => class where user is a foreign key
     tasks = db.relationship("Task", backref="User")

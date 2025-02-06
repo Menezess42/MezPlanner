@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from blueprints.user.models import User
+from backend.blueprints.user.models import User
 from backend.blueprints.app import db, bcrypt
 from datetime import datetime
 
@@ -30,7 +30,7 @@ def get_user(usr_id):
     if user:
         user_info = {
             "name": user.name,
-            "email": user.emal,
+            "email": user.email,
             "birthday": user.birthday,
             "createdat": user.createdat,
         }
@@ -39,17 +39,18 @@ def get_user(usr_id):
 
 
 # login
-@user.route("/userLogin", methods=["GET"])
+@user.route("/userLogin", methods=["GET", "POST"])
 def login_user():
     data = request.get_json()
     email = data.get("email")
     password = data.get("password")
     user = User.query.filter_by(email=email).first()
-
+    print(password)
+    print(bcrypt.check_password_hash(user.password, password))
     if user and bcrypt.check_password_hash(user.password, password):
         user_info = {
             "name": user.name,
-            "email": user.emal,
+            "email": user.email,
             "birthday": user.birthday,
             "createdat": user.createdat,
         }

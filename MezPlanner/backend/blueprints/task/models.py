@@ -1,8 +1,7 @@
 from backend.blueprints.app import db
 
-
 class Task(db.Model):
-    __tablename__ = "Tasks"
+    __tablename__ = "tasks"
 
     tsk_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
@@ -10,7 +9,7 @@ class Task(db.Model):
     color = db.Column(db.String, nullable=False)
     template = db.Column(db.Boolean, nullable=False)
     weekdays = db.Column(db.Integer, nullable=False)
-    usr_id = db.Column(db.Integer, db.ForeignKey("user.usr_id"))
+    usr_id = db.Column(db.Integer, db.ForeignKey("users.usr_id"))
 
     def __init__(
         self,

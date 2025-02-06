@@ -4,7 +4,7 @@ from datetime import datetime
 
 class Wallet(db.Model):
 
-    __tablename__ = "Wallets"
+    __tablename__ = "wallets"
 
     walet_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
@@ -15,7 +15,7 @@ class Wallet(db.Model):
     own_money_value = db.Column(db.Float, nullable=False)
     credit = db.Column(db.Float, nullable=False)
     only_stock_value = db.Column(db.Float, nullable=False)
-    usr_id = db.Column(db.Integer, db.ForeignKey("user.usr_id"))
+    usr_id = db.Column(db.Integer, db.ForeignKey("users.usr_id"))
 
     def __init__(
         self,
