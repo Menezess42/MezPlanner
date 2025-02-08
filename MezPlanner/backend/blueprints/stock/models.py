@@ -9,7 +9,7 @@ class Stock(db.Model):
     symbol = db.Column(db.String, nullable=False)
     name = db.Column(db.String, nullable=False)
     current_price = db.Column(db.Float, nullable=False)
-    transactions = db.relationship("Transactions", backref="Stock")
+    transactions = db.relationship("Transaction", backref="Stock")
     # tasks = db.relationship('Task', backref='User')
     # intervals = db.relationship('Interval', backref='User')
     # wallets = db.relationship('Wallet', backref='User')
