@@ -1,6 +1,9 @@
 import pytest
 from flask import Flask
 from backend.blueprints.stock.routes import stock
+from backend.blueprints.stock.models import Stock
+from backend.blueprints.transaction.models import Transaction
+from backend.blueprints.wallet.models import Wallet
 from backend.blueprints.app import db
 import sys
 import os
@@ -22,7 +25,6 @@ def app():
 
     yield app
 
-
 def test_create_stock(client):
     response = client.post("/stockCreate", json={
         "symbol": "TEST",
@@ -33,37 +35,35 @@ def test_create_stock(client):
     assert b"Stock created successfully!" in response.data
 
 
-flag = False
-if flag:
-    def test_get_stock(client):
-        response = client.get("stockGet/1")
-        assert response.status_code == 200
-        data = response.get_json()
-        assert data["symbol"] == "TEST"
+def test_get_stock(client):
+    response = client.get("stockGet/1")
+    assert response.status_code == 200
+    data = response.get_json()
+    assert data["symbol"] == "TEST"
 
 
-    def test_update_stock(client):
-        response = client.put("stockUpdate/1", json={
-            "symbol": "TEST33"
-            })
-        assert response.status_code == 200
-        assert b"Stock updated successfully" in response.data
+def test_update_stock(client):
+    response = client.put("stockUpdate/1", json={
+        "symbol": "TEST33"
+        })
+    assert response.status_code == 200
+    assert b"Stock updated successfully" in response.data
 
 
-    def test_delete_stock(client):
-        response = client.delete("/stockdelete/1")
-        assert response.status_code == 200
-        assert b"Stock deleted successfully" in response.data
+def test_delete_stock(client):
+    response = client.delete("/stockDelete/1")
+    assert response.status_code == 200
+    assert b"Stock deleted successfully" in response.data
 
 
-    def test_create_stock_safe(client):
-        response = client.post("/stockCreate", json={
-            "symbol": "TEST",
-            "name": "testStock",
-            "current_price": "12,99",
-            })
-        assert response.status_code == 201
-        assert b"Stock created successfully!" in response.data
+def test_create_stock_safe(client):
+    response = client.post("/stockCreate", json={
+        "symbol": "TEST",
+        "name": "testStock",
+        "current_price": "12,99",
+        })
+    assert response.status_code == 201
+    assert b"Stock created successfully!" in response.data
 
 
 

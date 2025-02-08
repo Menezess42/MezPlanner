@@ -45,7 +45,7 @@ def test_get_user(client):
     response = client.get("/userGet/1")
     assert response.status_code == 200
     data = response.get_json()
-    assert data["email"] == "test@usertest.com"
+    assert data["email"] == "ariel@test.com"
 
 
 def test_update_user(client):
@@ -72,14 +72,13 @@ def test_delete_user(client):
     assert b"User deleted successfully" in response.data
 
 
-
-
-
-
-
-
-
-
-
-
+def test_create_user_safe(client):
+    response = client.post("/userCreate", json={
+        "name": "User test 2",
+        "email": "ariel@test.com",
+        "password": "ariel",
+        "birthday": "2025-01-06",
+        })
+    assert response.status_code == 201
+    assert b"User created successfully!" in response.data
 

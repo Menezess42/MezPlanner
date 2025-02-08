@@ -15,12 +15,12 @@ def convert_float(value) -> float:
 @stock.route("/stockCreate", methods=["POST"])
 def create_stock():
     data = request.get_json()
-    #float_c_price = convert_float(data.get("current_price")) 
+    float_c_price = convert_float(data.get("current_price")) 
     # Here I want tu use Bcrypt from flask
     new_stock = Stock(
         symbol=data.get("symbol"),
         name=data.get("name"),
-        current_price=data.get("current_price"),
+        current_price=float_c_price,
     )
     db.session.add(new_stock)
     db.session.commit()
