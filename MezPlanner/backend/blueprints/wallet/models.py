@@ -1,5 +1,6 @@
 from backend.blueprints.app import db
 from datetime import datetime
+from backend.blueprints.transaction.models import Transaction
 
 
 class Wallet(db.Model):
@@ -16,6 +17,9 @@ class Wallet(db.Model):
     credit = db.Column(db.Float, nullable=False)
     only_stock_value = db.Column(db.Float, nullable=False)
     usr_id = db.Column(db.Integer, db.ForeignKey("users.usr_id"))
+
+    # 1 stock have N transactions
+    transactions = db.relationship("Transaction", backref="Wallet")
 
     def __init__(
         self,

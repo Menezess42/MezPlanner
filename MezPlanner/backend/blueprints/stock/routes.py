@@ -5,7 +5,9 @@ from backend.blueprints.app import db
 stock = Blueprint("stock", __name__)
 
 
-def convert_float(value: str) -> float:
+def convert_float(value) -> float:
+    if type(value) is float:
+        return value
     return float(value.replace(",", "."))
 
 
@@ -13,12 +15,12 @@ def convert_float(value: str) -> float:
 @stock.route("/stockCreate", methods=["POST"])
 def create_stock():
     data = request.get_json()
-    float_c_price = convert_float(data.get("current_price"))
+    #float_c_price = convert_float(data.get("current_price")) 
     # Here I want tu use Bcrypt from flask
     new_stock = Stock(
         symbol=data.get("symbol"),
         name=data.get("name"),
-        current_price=float_c_price,
+        current_price=data.get("current_price"),
     )
     db.session.add(new_stock)
     db.session.commit()
