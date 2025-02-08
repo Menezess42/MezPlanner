@@ -7,6 +7,7 @@ class Wallet(db.Model):
 
     __tablename__ = "wallets"
 
+    walet_id = db.Column(db.Integer, db.ForeignKey("wallets.walet_id"))
     walet_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     current_value = db.Column(db.Float, nullable=False)
@@ -41,7 +42,7 @@ class Wallet(db.Model):
         self.own_money_value = own_money_value
         self.credit = credit
         self.only_stock_value = only_stock_value
-        self.usr_id
+        self.usr_id = usr_id
 
     def __repr__(self):
         return f"<name: {self.name}, current_value: {self.current_value}, highest_value: {self.highest_value}, highest_value_day: {self.highest_value_day}, stock_value: {self.stock_value}, own_money_value: {self.own_money_value}, credit: {self.credit}, only_stock_value: {self.only_stock_value}>"
