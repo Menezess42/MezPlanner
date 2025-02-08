@@ -4,11 +4,11 @@ from datetime import datetime
 
 class Transaction(db.Model):
 
-    __tablename__ = "Transactions"
+    __tablename__ = "transactions"
 
     trans_id = db.Column(db.Integer, primary_key=True)
     walet_id = db.Column(db.Integer, db.ForeignKey("wallets.walet_id"))
-    stok_id = db.Column(db.Integer, db.ForeignKey("stocks.stok_id"))
+    stock_id = db.Column(db.Integer, db.ForeignKey("stocks.stock_id"))
     qtde = db.Column(db.Integer, nullable=False)
     price = db.Column(db.Float, nullable=False)
     trans_date = db.Column(db.DateTime, nullable=False)
