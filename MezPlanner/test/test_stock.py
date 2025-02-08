@@ -27,7 +27,7 @@ def test_create_stock(client):
     response = client.post("/stockCreate", json={
         "symbol": "TEST",
         "name": "testStock",
-        "current_price": "12,99",
+        "current_price": 12.99,
         })
     assert response.status_code == 201
     assert b"Stock created successfully!" in response.data
