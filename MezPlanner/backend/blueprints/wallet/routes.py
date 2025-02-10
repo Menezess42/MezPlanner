@@ -54,7 +54,10 @@ def update_wallet(walet_id):
         wallet.name = data.get("name", wallet.name)
         wallet.current_value=float(data.get("current_value", wallet.current_value))
         wallet.highest_value=float(data.get("highest_value", wallet.highest_value))
-        wallet.highest_value_day = datetime.strptime(data.get("highest_value_day", wallet.highest_value_day), "%Y-%m-%dT%H:%M:%S")
+        # wallet.highest_value_day = datetime.strptime(str(data.get("highest_value_day", wallet.highest_value_day)), "%Y-%m-%dT%H:%M:%S")
+        wallet.highest_value_day = datetime.strptime(
+            str(data.get("highest_value_day", wallet.highest_value_day)).replace("T", " "),
+            "%Y-%m-%d %H:%M:%S",)
         wallet.stock_value=float(data.get("stock_value", wallet.stock_value))
         wallet.own_money_value = float(data.get("own_money_value", wallet.own_money_value))
         wallet.credit = float(data.get("credit", wallet.credit))

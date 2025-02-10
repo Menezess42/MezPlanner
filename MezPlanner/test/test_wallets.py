@@ -70,4 +70,17 @@ if flag:
         assert b"Wallet deleted successfully" in response.data
 
 
-
+    def test_create_wallet_safe(client):
+        response = client.post("/walletCreate", json={
+            "name": "Test W Name",
+            "current_value": "1000.50",
+            "highest_value": "2000.50",
+            "highest_value_day": datetime.now().isoformat(timespec="seconds"),
+            "stock_value": "500.25",
+            "own_money_value": "500.25", 
+            "credit": "1.5",
+            "only_stock_value": "1.5",
+            "usr_id":"1",
+            })
+        assert response.status_code == 201
+        assert b"Wallet created successfully!" in response.data
