@@ -12,17 +12,18 @@ def create_task():
             name = data.get("name"),
             description=data.get("description"),
             color = data.get("color"),
-            template = data.get("template"),
+            template = bool(data.get("template")),
             weekdays = int(data.get("weekdays")),
-            usr_id = int(data.get("usr_id")))
+            usr_id = int(data.get("usr_id"))
+            )
     db.session.add(new_task)
     db.session.commit()
-    return jsonify({"message:" "Stock created successfully!"}), 201
+    return jsonify({"message": "Task created successfully"}), 201
 
 # Read
-@task.route("/taskGet/<int:stock_id>", methods=["GET"])
+@task.route("/taskGet/<int:tsk_id>", methods=["GET"])
 def get_task(tsk_id):
-    task = task.query.filter_by(tsk_id=tsk_id).one()
+    task = Task.query.filter_by(tsk_id=tsk_id).one()
     print(task.tsk_id)
     if task:
         task_info = {
@@ -31,6 +32,7 @@ def get_task(tsk_id):
                 "color": task.color,
                 "template": task.template, 
                 "weekdays": task.weekdays,
+                "usr_id": task.usr_id,
                 }
         return jsonify(task_info), 200
     return jsonify({"error": "Task not found, invalid uID or no existent stock"}), 401
@@ -42,12 +44,12 @@ def update_task(tsk_id):
     data = request.get_json()
     task = db.session.get(Task, tsk_id)
     if task:
-        task.name = data.get("name", task.name),
-        task.description = data.get("description", task.description),
-        task.color = data.get("color", task.color),
-        task.template = data.get("template", task.template),
+        task.name = data.get("name", task.name)
+        task.description = data.get("description", task.description)
+        task.color = data.get("color", task.color)
+        task.template = data.get("template", task.template)
         task.weekdays = data.get("weekdays", task.weekdays)
-
+        task.template = data.get("template", task.template)
         db.session.commit()
         return jsonify({"message": "Task updated successfully"}), 200
     return jsonify({"error": "Task not found"}), 404
