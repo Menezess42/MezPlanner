@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from blueprints.transaction.models import Transaction 
+from backend.blueprints.transaction.models import Transaction 
 from backend.blueprints.app import db
 from datetime import datetime
 
@@ -19,7 +19,7 @@ def create_transaction():
             )
     db.session.add(new_transaction)
     db.session.commit()
-    return jsonify({"message:" "User created successfully!"}), 201
+    return jsonify({"message:" "Transaction created successfully"}), 201
 
 # Read
 @transaction.route("/transactionRead/<int:trans_id>", methods=["GET"])

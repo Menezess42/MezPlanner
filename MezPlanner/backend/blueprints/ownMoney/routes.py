@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from blueprints.ownMoney.models import OwnMoney
+from backend.blueprints.ownMoney.models import OwnMoney
 from backend.blueprints.app import db
 from datetime import datetime
 
@@ -20,7 +20,7 @@ def create_ownMoney():
     return jsonify({"message": "ownMoney created successfully"}), 201
 
 # Read
-@ownMoney.route("/ownMoneyRead/<int:own_id>", methods=["GET"])
+@ownMoney.route("/ownMoneyGet/<int:own_id>", methods=["GET"])
 def read_ownMoney(own_id):
     ownMoney = OwnMoney.query.filter_by(own_id=own_id).one()
     print(ownMoney.own_id)
@@ -43,7 +43,10 @@ def update_ownMoney(own_id):
     if ownMoney:
         ownMoney.walet_id = int(data.get("walet_id", ownMoney.walet_id))
         ownMoney.invested_value = float(data.get("invested_value", ownMoney.invested_value))
-        ownMoney.invested_date = datetime.strptime(data.get("invested_date", ownMoney.invested_date), "%Y-%m-%dT%H:%M:%S")
+        # ownMoney.invested_date = datetime.strptime(data.get("invested_date", ownMoney.invested_date), "%Y-%m-%dT%H:%M:%S")
+        ownMoney.invested_date = datetime.strptime(
+            str(data.get("inveseted_date", ownMoney.invested_date)).replace("T", " "),
+            "%Y-%m-%d %H:%M:%S",)
         ownMoney.iStarted_value = bool(data.get("iStarted_value", ownMoney.iStarted_value))
         return jsonify({"message": "OwnMoney updated successfully"}), 200
     return jsonify({"error": "OwnMoney not founded"}), 404
