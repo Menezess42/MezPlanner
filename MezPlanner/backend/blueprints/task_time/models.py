@@ -3,12 +3,12 @@ from datetime import time
 
 
 class Task_time(db.Model):
-    __tablename__ = "Task_times"
+    __tablename__ = "taskTimes"
 
     tsktime_id = db.Column(db.Integer, primary_key=True)
     startime = db.Column(db.Time, nullable=False)
     endtime = db.Column(db.Time, nullable=False)
-    tsk_id = db.Column(db.Integer, db.ForeignKey("task.tsk_id"))
+    tsk_id = db.Column(db.Integer, db.ForeignKey("tasks.tsk_id"))
 
     def __init__(self, startime: time, endtime: time, tsk_id: int):
         self.startime = startime

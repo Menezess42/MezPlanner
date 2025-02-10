@@ -1,4 +1,5 @@
 from backend.blueprints.app import db
+from backend.blueprints.task_time.models import Task_time
 
 class Task(db.Model):
     __tablename__ = "tasks"
@@ -10,6 +11,8 @@ class Task(db.Model):
     template = db.Column(db.Boolean, nullable=False)
     weekdays = db.Column(db.Integer, nullable=False)
     usr_id = db.Column(db.Integer, db.ForeignKey("users.usr_id"))
+
+    taskTimes = db.relationship("Task_time", backref="Task")
 
     def __init__(
         self,
