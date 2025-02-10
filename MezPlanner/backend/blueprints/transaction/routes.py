@@ -19,15 +19,16 @@ def create_transaction():
             )
     db.session.add(new_transaction)
     db.session.commit()
-    return jsonify({"message:" "Transaction created successfully"}), 201
+    return jsonify({"message": "Transaction created successfully"}), 201
 
 # Read
-@transaction.route("/transactionRead/<int:trans_id>", methods=["GET"])
+@transaction.route("/transactionGet/<int:trans_id>", methods=["GET"])
 def read_transaction(trans_id):
     transaction = Transaction.query.filter_by(trans_id=trans_id).one()
     print(transaction.trans_id)
     if transaction:
         transaction_info = {
+                "walet_id": transaction.walet_id,
                 "stock_id": transaction.stock_id,
                 "qtde": transaction.qtde,
                 "price": transaction.price,
@@ -60,7 +61,7 @@ def delete_transactioN(trans_id):
         return jsonify({"error": "transaction not found"}), 400
     db.session.delete(transaction)
     db.session.commit()
-    return jsonify({"message": "transaction deleted successfully"}), 200
+    return jsonify({"message": "Transaction deleted successfully"}), 200
 
 
 

@@ -30,57 +30,49 @@ def app():
 def client(app):
     return app.test_client()
 
-def test_create_transaction(client):
-    response = client.post("/transactionCreate", json={
-        "walet_id": 1,
-        "stok_id": 1,
-        "qtde": 5,
-        "price": 100.5,
-        "trans_date": "2025-03-22T12:12:42",
-        "trans_type": 1,
-        })
-    assert b"Transaction created successfully" in response.data
-    assert response.status_code == 201
 
-
-flag = False
+flag = True
 if flag:
 
-    def test_create_ownMoney(client):
-        response = client.post("/ownMoneyCreate", json={
+    def test_create_transaction(client):
+        response = client.post("/transactionCreate", json={
             "walet_id": 1,
-            "invested_value": 50.50,
-            "invested_date": "2025-03-22T12:42:24",
-            "iStarted_value": 1,
+            "stok_id": 1,
+            "qtde": 5,
+            "price": 100.5,
+            "trans_date": "2025-03-22T12:12:42",
+            "trans_type": 1,
             })
-        assert b"ownMoney created successfully" in response.data
+        assert b"Transaction created successfully" in response.data
         assert response.status_code == 201
 
-    def test_get_ownMoney(client):
-        response = client.get("/ownMoneyGet/1")
+    def test_get_transaction(client):
+        response = client.get("/transactionGet/1")
         assert response.status_code == 200
         data = response.get_json()
         assert data["walet_id"] == 1
 
-    def test_update_ownMoney(client):
-        response = client.put("/ownMoneyUpdate/1", json={
-            "invested_value": 60.60,
+    def test_update_transaction(client):
+        response = client.put("/transactionUpdate/1", json={
+            "qtde": 10,
             })
         assert response.status_code == 200
-        assert b"OwnMoney updated successfully" in response.data
+        assert b"Transaction updated successfully" in response.data
     
 
-    def test_delete_ownMoney(client):
-        response = client.delete("/ownMoneyDelete/1")
+    def test_delete_transaction(client):
+        response = client.delete("/transactionDelete/1")
         assert response.status_code == 200
-        assert b"OwnMoney deleted successfully" in response.data
+        assert b"Transaction deleted successfully" in response.data
 
-    def test_create_ownMoney_safe(client):
-        response = client.post("/ownMoneyCreate", json={
+    def test_create_transaction_safe(client):
+        response = client.post("/transactionCreate", json={
             "walet_id": 1,
-            "invested_value": 50.50,
-            "invested_date": "2025-03-22T12:42:24",
-            "iStarted_value": 1,
+            "stok_id": 1,
+            "qtde": 5,
+            "price": 100.5,
+            "trans_date": "2025-03-22T12:12:42",
+            "trans_type": 1,
             })
-        assert b"ownMoney created successfully" in response.data
+        assert b"Transaction created successfully" in response.data
         assert response.status_code == 201
