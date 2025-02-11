@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from blueprints.interval.models import Interval
+from backend.blueprints.interval.models import Interval
 from backend.blueprints.app import db
 from datetime import datetime
 
@@ -19,7 +19,7 @@ def create_interval():
             )
     db.session.add(new_interval)
     db.session.commit()
-    return jsonify({"message": "Interval created successfully!"}), 201
+    return jsonify({"message": "Interval created successfully"}), 201
 
 # Read
 @intervals.route("/intervalGet/<int:intvl_id>", methods=["GET"])
@@ -37,14 +37,14 @@ def get_interval(intvl_id):
     return jsonify({"error": "Interval not found, invalid iID or no existent user"}), 401
 
 # update
-@intervals.route("/intervalUpdate/<int:intvl_id>", methods=["POST"])
+@intervals.route("/intervalUpdate/<int:intvl_id>", methods=["PUT"])
 def update_interval(intvl_id):
     data = request.get_json()
     interval = db.session.get(Interval, intvl_id)
     if interval:
-        interval.intvl_type = data.get("intvl_type", interval.intvl_type),
-        interval.weekdays = data.get("weekdays", interval.weekdays),
-        interval.valid_startdate = data.get("valid_startdate", interval.valid_startdate),
+        interval.intvl_type = data.get("intvl_type", interval.intvl_type)
+        interval.weekdays = data.get("weekdays", interval.weekdays)
+        interval.valid_startdate = data.get("valid_startdate", interval.valid_startdate)
         interval.valid_endate = data.get("valid_endate", interval.valid_endate)
         db.session.commit()
         return jsonify({"message": "Interval updated successfully"}), 200
@@ -53,9 +53,15 @@ def update_interval(intvl_id):
 # Delete
 @intervals.route("/intervalDelete/<int:intvl_id>", methods=["DELETE"])
 def delete_interval(intvl_id):
-    interval = db.session.get(Interval, intvl_id),
+    interval = db.session.get(Interval, intvl_id)
     if not interval:
         return jsonify({"error": "Interval not found"}), 400
     db.session.delete(interval)
     db.session.commit()
     return jsonify({"message": "Interval deleted successfully"}), 200
+
+
+
+
+
+
