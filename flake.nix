@@ -13,16 +13,22 @@
 #enableIDE = true;
 #idePackages = if enableIDE then import ./ide-packages.nix {inherit pkgs; } else [];
                 in {
-                devShell = pkgs.mkShell {                                                                  
+                devShell = pkgs.mkShell {
                 name = "day-planner-env";
                 buildInputs = with pkgs; [
                 curl
                 direnv
                 sqlite
+                # JS 4 the project and IDE like features on neovim
                 nodejs
+                nodePackages.npm
+                nodePackages.yarn
+                nodePackages.pnpm
+                nodePackages.typescript
+                nodePackages.typescript-language-server
+                # Python 4 the project and IDE Like features on neovim
                 python311
                 pyright
-                #isort
                 python311Packages.pip
                 python311Packages.pandas
                 python311Packages.openpyxl
