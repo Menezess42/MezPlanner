@@ -21,10 +21,10 @@
                 sqlite
                 # JS 4 the project and IDE like features on neovim
                 nodejs
-                nodePackages.npm
-                nodePackages.yarn
-                nodePackages.pnpm
-                nodePackages.typescript
+                # nodePackages.npm
+                # nodePackages.yarn
+                # nodePackages.pnpm
+                # nodePackages.typescript
                 nodePackages.typescript-language-server
                 # Python 4 the project and IDE Like features on neovim
                 python311
