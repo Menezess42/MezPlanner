@@ -21,6 +21,7 @@
                 sqlite
                 # JS 4 the project and IDE like features on neovim
                 nodejs
+                eslint
                 # nodePackages.npm
                 # nodePackages.yarn
                 # nodePackages.pnpm
