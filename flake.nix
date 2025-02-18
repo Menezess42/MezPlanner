@@ -22,10 +22,7 @@
                 # JS 4 the project and IDE like features on neovim
                 nodejs
                 eslint
-                # nodePackages.npm
-                # nodePackages.yarn
-                # nodePackages.pnpm
-                # nodePackages.typescript
+                pkgs.vscode-langservers-extracted
                 nodePackages.typescript-language-server
                 # Python 4 the project and IDE Like features on neovim
                 python311
