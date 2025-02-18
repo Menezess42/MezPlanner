@@ -1,0 +1,41 @@
+
+.header {
+  background-color: rgba(191, 191, 191, 0.1); /* 10% opacidade */
+  color: white;
+  border-radius: 0px 0px 10px 10px;
+  
+  /* Fixar no topo */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 20px; /* Reduzi a altura do padding para ficar mais compacto */
+  box-sizing: border-box; /* Garantir que padding não aumente o tamanho do header */
+  z-index: 10;
+  
+  /* Usar flexbox para o layout dos itens */
+  display: flex;
+  justify-content: space-between; /* Espaço entre os itens */
+  align-items: center; /* Alinhar verticalmente */
+  overflow: hidden; /* Evitar que o conteúdo ultrapasse os limites do header */
+  font-size: 60%;
+}
+
+.header h1 {
+  margin: 0;
+  flex: 1; /* Isso vai fazer com que o "MezPlanner" ocupe o máximo de espaço possível à esquerda */
+  text-align: center; /* Centralizar o nome do app */
+  white-space: nowrap; /* Impedir que o nome do app quebre em várias linhas */
+  overflow: hidden; /* Impedir que o texto ultrapasse os limites */
+  text-overflow: ellipsis; /* Adicionar "..." caso o texto ultrapasse */
+}
+
+.header h2 {
+  margin: 0;
+  text-align: right; /* Posicionar o "User" à direita */
+  white-space: nowrap; /* Impedir quebra de linha */
+  overflow: hidden; /* Impedir que o texto ultrapasse */
+  text-overflow: ellipsis; /* Adicionar "..." caso o texto ultrapasse */
+  color: rgba(255, 255, 255, 0.3); /* 10% opacidade */
+}
+
