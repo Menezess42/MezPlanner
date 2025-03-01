@@ -23,6 +23,7 @@
                 nodejs
                 eslint
                 pkgs.vscode-langservers-extracted
+                typescript-language-server
                 # Python 4 the project and IDE Like features on neovim
                 python311
                 pyright
